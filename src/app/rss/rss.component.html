@@ -1,0 +1,27 @@
+<p class="h1">{{title}}</p>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 mt-1" *ngFor="let item of newRssList  | paginate:{
+            itemsPerPage: tableSize,
+            currentPage:page,
+            totalItems: count
+        }; let i = index">
+            <div class="card" style="width: 18rem;">
+
+                <img class="card-img-top" src="" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.title}}</h5>
+                    <p class="card-text">{{item.description}}</p>
+                    <a href="{{item.link}}" class="btn btn-primary">Détails</a> &nbsp;
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateFormModal" data-bs-whatever="@getbootstrap">Modifier</button>
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <pagination-controls (pageChange)="onTableDataChnage($event)" previousLabel="Avant" nextLabel="Suivant">
+            </pagination-controls>
+        </div>
+    </div>
+</div>
+<app-update-form></app-update-form>
